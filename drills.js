@@ -86,9 +86,43 @@ function balance(tree){
 }
 
 
+// Q9.  Are they the same BSTs?
+
+function identicalBST(treeA, treeB){
+
+  //check for the same root and same lengths
+  if(treeA[0] !== treeB[0] || treeA.length !== treeB.length){
+    return false;
+  }
+
+  if(treeA.length <= 2 && treeA[1] === treeB[1]){
+    return true;
+  }
+
+  let rightA = treeA.filter(item => {
+    return item > treeA[0];
+  })
+  let leftA = treeA.filter(item => {
+    return item < treeA[0];
+  })
+  let rightB = treeB.filter(item => {
+    return item > treeB[0];
+  })
+  let leftB = treeB.filter(item => {
+    return item < treeB[0];
+  })
+
+  return identicalBST(rightA, rightB)  &&  identicalBST(leftA, leftB);
+
+}
+
+
 function main(){
   let tree = new BST();
-  let arr = [3,1,4,6,9,2,5,7];
+  let arr1 = [3, 5, 4, 6, 1, 0, 2];
+  let arr2 = [3, 1, 5, 2, 4, 6, 0];
+
+  console.log(identicalBST(arr1, arr2));
 
   tree.insert(3);
   tree.insert(1);
@@ -103,7 +137,7 @@ function main(){
   // console.log(isBST(tree))
   //console.log(JSON.stringify(tree));
   // console.log(thirdLargest(tree))
-  console.log(balance(tree))
+  //console.log(balance(tree))
   // console.log(minHeight(tree))
 
 
