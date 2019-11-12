@@ -143,6 +143,13 @@ _findMin() {
   return this.left._findMin();
 }
 
+_findMax() {
+    if (!this.right) {
+        return this;
+    }
+    return this.right._findMax();
+  }
+
 }
 
 module.exports = BinarySearchTree;
